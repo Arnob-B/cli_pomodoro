@@ -1,15 +1,17 @@
 import Engine.PomodoroEngine;
 import Engine.Timer;
-import DB.DBManager;
+import Engine.Notifier;
 
 class Main {
   public static void main(String[] args) {
     PomodoroEngine pm = new PomodoroEngine();
-    int time_in_s = 20;
-    Timer t = new Timer("timer", time_in_s * 1000);
-    t.begin();
-    DBManager db = new DBManager("hello");
-    System.out.println(db.status());
     pm.start();
+    String title = "start studying";
+    int time_in_s = 3;
+    Notifier.timerStarted("start studying", "focus for a while", time_in_s);
+    Timer t = new Timer("timer", time_in_s * 1000, () -> {
+      Notifier.timerEnded("start studying", "take some break", time_in_s);
+    });
+    t.begin();
   }
 }

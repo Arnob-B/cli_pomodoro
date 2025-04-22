@@ -53,5 +53,8 @@
 - [ ] Create a README with usage instructions and examples
 
 ## ⏲️ Timer
-- [ ] create a listener
+- [x] create on-end listener
 - [ ] make it more efficient
+## 󱇮 notifier
+- [x] using libnotify wrapper library
+- [ ] use runtime.exec() (work)
