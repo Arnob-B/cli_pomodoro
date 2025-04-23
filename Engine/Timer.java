@@ -1,10 +1,7 @@
 package Engine;
 
 import java.util.*;
-
-interface TimerListerner {
-  void onTimeEnd();
-}
+import lib.CLIManager;
 
 class CurrentTimerTime {
   public long total_sec_in_ms;
@@ -17,6 +14,10 @@ class CurrentTimerTime {
 }
 
 public class Timer extends Thread {
+  public interface TimerListerner {
+    void onTimeEnd();
+  }
+
   String name;
   long starting_time_in_ms;
   long ending_time_in_ms;
@@ -24,10 +25,13 @@ public class Timer extends Thread {
   long counter_in_ms;
   TimerListerner listener;
   final long STEP_FOR_SLEEP = 10;
+  CLIManager cli;
 
-  Timer(String name, long total_time_in_ms, TimerListerner listener) {
-    this.name = name;
+  public Timer(String name, long total_time_in_ms, TimerListerner listener) {
+    cli = new CLIManager();
     this.listener = listener;
+    this.name = name;
+    // this.listener = new TimerListerner();
     Date localDate = new Date();
     this.starting_time_in_ms = localDate.getTime();
     this.total_time_in_ms = total_time_in_ms;
@@ -53,8 +57,11 @@ public class Timer extends Thread {
     try {
       while (counter_in_ms != 0) {
         counter_in_ms -= STEP_FOR_SLEEP;
+        // System.out.println(counter_in_ms);
+        cli.printTime_in_ms(counter_in_ms);
         Thread.sleep(STEP_FOR_SLEEP);
       }
+      System.out.println();
       listener.onTimeEnd();
       this.end();
     } catch (Exception err) {

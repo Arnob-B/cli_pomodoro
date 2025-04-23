@@ -23,12 +23,12 @@ class Notification {
 }
 
 public class Notifier extends Notification {
-  static void timerStarted(String title, String message, int time_in_sec) {
+  public static void timerStarted(String title, String message, int time_in_sec) {
     String desc = String.format("%s \nduration: %dsec \nstatus: started", message, time_in_sec);
     showNotification(title, desc);
   }
 
-  static void timerEnded(String title, String message, int time_in_sec) {
+  public static void timerEnded(String title, String message, int time_in_sec) {
     String desc = String.format("%s \nduration: %dsec \nstatus: ended", message, time_in_sec);
     showNotification(title, desc);
   }

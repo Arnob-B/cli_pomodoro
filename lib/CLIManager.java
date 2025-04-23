@@ -2,6 +2,8 @@
 /**
  * CLIManager
  */
+package lib;
+
 interface CLI_TIME {
   default public void counter(int hour, int min, int sec) throws InterruptedException {
     while (true) {
@@ -30,6 +32,15 @@ interface CLI_TIME {
   }
 
   default public void printTime_in_ms(long millisec) throws InterruptedException {
+    long totalSeconds = millisec / 1000;
+    int sec = (int) (totalSeconds % 60);
+    int min = (int) ((totalSeconds / 60) % 60);
+    int hour = (int) (totalSeconds / 3600);
+    this.printTime(hour, min, sec);
+    // counter(hour, min, sec);
+  }
+
+  default public void count_time_in_ms(long millisec) throws InterruptedException {
     long totalSeconds = millisec / 1000;
     int sec = (int) (totalSeconds % 60);
     int min = (int) ((totalSeconds / 60) % 60);
