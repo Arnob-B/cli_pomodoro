@@ -28,7 +28,8 @@ interface CLI_TIME {
   }
 
   default public void printTime(int hour, int min, int sec) {
-    System.out.printf("\r%02d:%02d:%02d", hour, min, sec);
+    String time = String.format("\r%02d:%02d:%02d", hour, min, sec);
+    System.out.printf(time);
   }
 
   default public void printTime_in_ms(long millisec) throws InterruptedException {
@@ -63,9 +64,5 @@ public class CLIManager implements CLI_TIME {
       Thread.sleep(100);
     }
 
-  }
-
-  public static void main(String[] args) throws InterruptedException {
-    new CLIManager().printTime_in_ms(86399000);
   }
 }
