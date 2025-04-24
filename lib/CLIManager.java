@@ -52,6 +52,11 @@ interface CLI_TIME {
 }
 
 public class CLIManager implements CLI_TIME {
+  public static void showUsage() {
+    System.out.println("usage : java Main 00:00:00");
+
+  }
+
   public static void loader() throws InterruptedException {
     while (true) {
       System.out.printf("\r[   ]");
