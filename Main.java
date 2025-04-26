@@ -14,7 +14,7 @@ class Main {
     }
     Time t;
     try{
-      t =  new Time(args[1]);
+      t =  new Time(args[0]);
     }
     catch(Exception err){
       System.out.println("invalid time format");

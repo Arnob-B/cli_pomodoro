@@ -4,6 +4,9 @@
  */
 package lib;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 interface CLI_TIME {
   default public void counter(int hour, int min, int sec) throws InterruptedException {
     while (true) {
@@ -24,12 +27,34 @@ interface CLI_TIME {
       }
       Thread.sleep(1000);
     }
-
   }
 
-  default public void printTime(int hour, int min, int sec) {
+  public default void printTime(int hour, int min, int sec) {
     String time = String.format("\r%02d:%02d:%02d", hour, min, sec);
     System.out.printf(time);
+  }
+
+  public default void printTimeFancy(int hour, int min, int sec) {
+    try {
+      String time = String.format("%02d:%02d:%02d", hour, min, sec);
+
+      ProcessBuilder pb = new ProcessBuilder("figlet", time);
+      Process process = pb.start();
+
+      BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+      // Clear screen using ANSI escape code
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
+
+      String line;
+      while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+      }
+
+    } catch (Exception err) {
+      err.printStackTrace();
+    }
   }
 
   default public void printTime_in_ms(long millisec) throws InterruptedException {
