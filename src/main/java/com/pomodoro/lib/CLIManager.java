@@ -78,8 +78,9 @@ interface CLI_TIME {
 
 public class CLIManager implements CLI_TIME {
 	public static void showUsage() {
-		System.out.println("usage : java Main 00:00:00");
-
+		System.out.println("--- pomodoro ---");
+		System.out.println("pomo 00:00:00");
+		System.out.println("tracker start/resume/pause/stop");
 	}
 
 	public static void loader() throws InterruptedException {

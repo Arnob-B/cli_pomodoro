@@ -1,22 +1,9 @@
-package com.pomodoro.Engine;
+package com.pomodoro.Tracker;
 
+import com.pomodoro.Tracker.Tracker;
 import java.util.Date;
 
-final class FLOWSTATES {
-	final static String PAUSED = "PAUSED";
-	final static String RESUMED = "RESUMED";
-	final static String STARTED = "STARTED";
-	final static String ENDED = "ENDED";
-}
-
-public interface Tracker {
-
-	public boolean changeFlowState(String newState);
-
-}
-
-// singleton
-class TimeTracker implements Tracker {
+public class TimeTracker implements Tracker {
 	public String flowState = null;
 
 	public TimeTracker() {
@@ -33,24 +20,28 @@ class TimeTracker implements Tracker {
 			case FLOWSTATES.STARTED:
 				if (flowState != FLOWSTATES.ENDED) {
 					flag = false;
+					break;
 				}
 				flowState = FLOWSTATES.STARTED;
 				break;
 			case FLOWSTATES.PAUSED:
 				if (flowState != FLOWSTATES.RESUMED || flowState != FLOWSTATES.STARTED) {
 					flag = false;
+					break;
 				}
 				flowState = FLOWSTATES.PAUSED;
 				break;
 			case FLOWSTATES.RESUMED:
 				if (flowState != FLOWSTATES.PAUSED) {
 					flag = false;
+					break;
 				}
 				flowState = FLOWSTATES.RESUMED;
 				break;
 			case FLOWSTATES.ENDED:
 				if (flowState != FLOWSTATES.ENDED) {
 					flag = false;
+					break;
 				}
 				flowState = FLOWSTATES.ENDED;
 				break;
