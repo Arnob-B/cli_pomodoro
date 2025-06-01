@@ -1,4 +1,4 @@
-package DB;
+package com.pomodoro.DB;
 
 public class DBManager {
 	String connectionStatus = "NOT_CONNECTED";

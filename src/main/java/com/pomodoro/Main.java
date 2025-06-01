@@ -1,11 +1,9 @@
-import Engine.PomodoroEngine;
-import Engine.Timer;
+package com.pomodoro;
 
-import lib.Time;
-
-import Engine.Notifier;
-import lib.CLIManager;
-import Engine.Tracker;
+import com.pomodoro.Engine.Timer;
+import com.pomodoro.lib.Time;
+import com.pomodoro.Engine.Notifier;
+import com.pomodoro.lib.CLIManager;
 
 class Main {
 	public static void main(String[] args) throws Exception {
